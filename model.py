@@ -144,9 +144,20 @@ def main():
 
     X['AGE'] = (X['DAYS_BIRTH']/-365).astype(int)
     X['DAYS_EMPLOYED'].replace({365243: 0}, inplace=True)
+    X['DAYS_EMPLOYED_PERCENT'] = X['DAYS_EMPLOYED'] / X['DAYS_BIRTH']
     X['YEARS_EMPLOYED'] = round((X['DAYS_EMPLOYED']/-365).astype(int), 0)
     X.drop(['DAYS_BIRTH', 'DAYS_EMPLOYED'], axis=1, inplace=True)
-    
+    X["CREDIT_ANNUITY_RATIO"] = X["AMT_CREDIT"] / X["AMT_ANNUITY"]
+    X["INCOME_ANNUITY_RATIO"] = X["AMT_INCOME_TOTAL"] / X["AMT_ANNUITY"]
+    X["INCOME_CREDIT_RATIO"] = X["AMT_INCOME_TOTAL"] / X["AMT_CREDIT"]
+    X["CREDIT_GOODS_PRICE_RATIO"] = X["AMT_CREDIT"] / X["AMT_GOODS_PRICE"]
+    X["CREDIT_DOWNPAYMENT"] = X["AMT_GOODS_PRICE"] / X["AMT_CREDIT"]
+    X["CREDIT_INCOME_PERCENT"] = X["AMT_CREDIT"] / X["AMT_INCOME_TOTAL"]
+    X["ANNUITY_INCOME_PERCENT"] = X["AMT_ANNUITY"] / X["AMT_INCOME_TOTAL"]
+    X["RATIO_CREDIT_GOODS_PRICE"] = X["AMT_CREDIT"] / X["AMT_GOODS_PRICE"]
+    X["DIFF_GOODS_PRICE_CREDIT"] = X["AMT_CREDIT"] - X["AMT_GOODS_PRICE"]
+    X['CREDIT_TERM'] = X['AMT_ANNUITY'] / X['AMT_CREDIT']
+   
     X = X[dashboard_col_name] 
     df_dashboard_inter = pd.DataFrame(process_data_dashboard(
         X), index = X.index, columns = dashboard_col_name)
@@ -155,12 +166,12 @@ def main():
     
     # CREATE DATA SET DASHBOARD LIGHT
     cols_keep = ['AGE', 'AMT_ANNUITY','AMT_CREDIT', 'AMT_GOODS_PRICE', 
-    'AMT_INCOME_TOTAL' , 'FLAG_OWN_REALTY', 'CODE_GENDER', 'YEARS_EMPLOYED', 'TARGET']
+    'AMT_INCOME_TOTAL' , 'FLAG_OWN_REALTY', 'TARGET']
     df_light = df_dashboard[cols_keep]
   
     # REORGANISATION & RENAME COLUMNS
     df_light.columns = ['AGE','AMOUNT ANNUITY', 'AMOUNT CREDIT', 'GOODS VALUE',
-    'ANNUAL INCOME', 'FLAT OWNER', 'YEARS EMPLOYED', 'TARGET']
+    'ANNUAL INCOME', 'FLAT OWNER', 'TARGET']
 
     category = ['AGE', 'ANNUAL INCOME',
                 'AMOUNT CREDIT', 'AMOUNT ANNUITY', 'GOODS VALUE']

@@ -20,8 +20,8 @@ with open('col_name_list.pkl', 'rb') as f:
 
 def load_data():
     n_rows = 100
-    path = "C:/Users/EJ/Desktop/Formation/DataScience/P7/flask_project/"
-    data = pd.read_csv(path + "application_train.csv",
+    #path = "/" #"C:/Users/EJ/Desktop/Formation/DataScience/P7/flask_project/"
+    data = pd.read_csv("dashboard_sample.csv",
                        nrows=n_rows, index_col='SK_ID_CURR')
     return data
 

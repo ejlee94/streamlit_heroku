@@ -1,13 +1,9 @@
-#import shap
-import joblib
-import pickle
-import matplotlib.pyplot as pl
-import numpy as np
-import pandas as pd
-import plotly.express as px
-import plotly.graph_objects as go
-import streamlit as st
-
-from plotly.subplots import make_subplots
-from sklearn.impute import SimpleImputer
-from sklearn.neighbors import KDTree
+shap==0.39.0
+joblib==1.01
+pickle==4.0
+matplotlib==2.2.5
+numpy==1.16.6
+pandas==1.1.4
+plotly==4.14.3
+streamlit==0.81.1
+scikit-learn==0.20.4

@@ -312,7 +312,7 @@ def main():
     model = joblib.load(model_prediction)
     model.fit(data_for_prediction, df["TARGET"])
     
-    #st.set_option('deprecation.showPyplotGlobalUse', False)
+    st.set_option('deprecation.showPyplotGlobalUse', False)
     ind = df_index.loc[id_client]["position"]
     shap.initjs()
     explainer = shap.LinearExplainer(

@@ -258,7 +258,7 @@ def main():
     
     # SHOW PROBA GRAPH
     if st.sidebar.checkbox("Afficher Proba Défaut", False, key=2):
-        st.header('2. Probabilité de défaut de rembourseemnt pour le client {}'.format(id_client))
+        st.header('2. Probabilité de défaut de remboursement pour le client {}'.format(id_client))
         placeholder = st.empty()
         fig0 = go.Figure(go.Indicator(mode="number+gauge+delta",
                                     value=client_pred_proba,
